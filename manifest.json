@@ -1,6 +1,6 @@
 {
-  "name": "單字學習系統",
-  "short_name": "單字學習",
+  "name": "VocabGo 單字學習系統",
+  "short_name": "VocabGO",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#047857",
