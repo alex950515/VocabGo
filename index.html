@@ -3285,12 +3285,25 @@
 
     // 註冊 Service Worker 實現 PWA 離線支援與快取
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('Service Worker 註冊成功！', reg))
-          .catch(err => console.log('Service Worker 註冊失敗：', err));
-      });
-    }
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => {
+        console.log('Service Worker 註冊成功！', reg);
+
+        // 💡 關鍵新增區段：監聽是否有新版的 Service Worker 被下載
+        reg.onupdatefound = () => {
+          const installingWorker = reg.installing;
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // 偵測到新版本已安裝，自動刷新頁面載入最新內容
+              window.location.reload();
+            }
+          };
+        };
+      })
+      .catch(err => console.log('Service Worker 註冊失敗：', err));
+  });
+}
   </script>
 </body>
 </html>
