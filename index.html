@@ -68,7 +68,6 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col antialiased select-none transition-colors duration-300 text-sm md:text-base">
 
-  <!-- Toast Notification Container -->
   <div id="toastContainer" class="fixed top-5 right-5 z-[9999] flex flex-col gap-2 pointer-events-none"></div>
 
   <!-- Shared Datalists for Category Autocomplete -->
@@ -110,9 +109,7 @@
 
       <p class="text-xs text-slate-400 font-medium">您可以調整分類的上下顯示順序，或重新命名母類別與子類別名稱。</p>
 
-      <div id="categoryManageListContainer" class="flex-grow overflow-y-auto space-y-3 pr-1 max-h-[60vh]">
-        <!-- Dynamic list rendered here -->
-      </div>
+      <div id="categoryManageListContainer" class="flex-grow overflow-y-auto space-y-3 pr-1 max-h-[60vh]"></div>
 
       <div class="flex justify-end pt-3 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
         <button onclick="closeCategoryManageModal()" class="px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold bg-emerald-600 text-white hover:bg-emerald-500 transition shadow-sm">完成儲存</button>
@@ -170,7 +167,7 @@
         </p>
         
         <div class="space-y-2 pt-1">
-          <textarea id="firebaseConfigTextarea" rows="4" placeholder="請貼入 firebaseConfig 程式碼，例如:&#10;const firebaseConfig = {&#10;  apiKey: &quot;...&quot;,&#10;  databaseURL: &quot;https://...&quot;&#10;};" class="w-full p-2.5 text-xs font-mono bg-slate-900/80 border border-slate-700/80 rounded-xl text-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 placeholder-slate-500 resize-none"></textarea>
+          <textarea id="firebaseConfigTextarea" rows="4" placeholder="請貼入 firebaseConfig 程式碼..." class="w-full p-2.5 text-xs font-mono bg-slate-900/80 border border-slate-700/80 rounded-xl text-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 placeholder-slate-500 resize-none"></textarea>
           
           <div class="grid grid-cols-2 gap-2">
             <button onclick="saveAndApplyFirebaseConfig()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm py-2 rounded-xl font-bold transition shadow-sm active:scale-95">
@@ -310,9 +307,7 @@
           </button>
         </div>
       </div>
-      <div id="translateHistoryList" class="flex-grow overflow-y-auto space-y-2.5 pr-1 max-h-[60vh]">
-        <!-- Items rendered dynamically -->
-      </div>
+      <div id="translateHistoryList" class="flex-grow overflow-y-auto space-y-2.5 pr-1 max-h-[60vh]"></div>
     </div>
   </div>
 
@@ -336,13 +331,10 @@
         </button>
       </div>
 
-      <div id="reviewModalDetailsList" class="flex-grow overflow-y-auto space-y-2 pr-1 max-h-[65vh] grid grid-cols-1 md:grid-cols-2 gap-2">
-        <!-- Dynamic Review Items -->
-      </div>
+      <div id="reviewModalDetailsList" class="flex-grow overflow-y-auto space-y-2 pr-1 max-h-[65vh] grid grid-cols-1 md:grid-cols-2 gap-2"></div>
     </div>
   </div>
 
-  <!-- Header -->
   <header class="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 dark:from-slate-900 dark:via-emerald-950 dark:to-slate-900 text-white shadow-lg py-3.5 px-4 md:px-6 sticky top-0 z-30 transition-colors border-b border-emerald-500/20">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
       <h1 class="text-lg md:text-2xl font-black flex items-center gap-2.5 tracking-wide">
@@ -383,7 +375,6 @@
 
   <div id="mobileBackdrop" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden md:hidden transition-opacity" onclick="toggleSidebar()"></div>
 
-  <!-- Main Container -->
   <main class="max-w-6xl w-full mx-auto p-3 md:p-6 flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start relative">
     
     <!-- Left Control Panel -->
@@ -505,7 +496,6 @@
       <!-- Tab 2: Quiz View -->
       <div id="tab-content-quiz" class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-5 hidden transition-colors">
         
-        <!-- Quiz Control Bar -->
         <div class="bg-gradient-to-br from-slate-50 to-emerald-50/40 dark:from-slate-800/60 dark:to-emerald-950/20 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 space-y-3.5 shadow-sm">
           <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-700/60 pb-2.5">
             <span class="text-xs md:text-sm font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
@@ -557,7 +547,6 @@
           </div>
         </div>
         
-        <!-- Animated Quiz Card Container -->
         <div id="quizCard" class="bg-gradient-to-b from-slate-50 to-white dark:from-slate-800/40 dark:to-slate-900/60 p-5 md:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 text-center space-y-4 min-h-[260px] flex flex-col justify-center relative transition-all shadow-inner">
           <div class="space-y-2 py-4">
             <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mx-auto shadow-sm">
@@ -567,7 +556,6 @@
           </div>
         </div>
         
-        <!-- Quiz Action Footer -->
         <div class="flex justify-between items-center text-xs md:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3">
           <div class="flex items-center gap-2">
             <span id="quizProgress" class="font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1 rounded-full text-xs md:text-sm">目前進度: --</span>
@@ -579,7 +567,6 @@
       <!-- Tab 3: Notebook View -->
       <div id="tab-content-notebook" class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-5 hidden transition-colors">
         
-        <!-- Sleek Sub-tab Pill Navigation -->
         <div class="bg-slate-100/80 dark:bg-slate-800/60 p-1 rounded-2xl flex gap-1 border border-slate-200/60 dark:border-slate-700/60">
           <button id="sub-nav-star" onclick="switchSubNotebook('star')" class="flex-1 py-2.5 px-4 rounded-xl text-xs md:text-sm font-bold bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm border border-slate-200/60 dark:border-slate-700/60 transition flex items-center justify-center gap-2">
             <i class="fa-solid fa-star text-amber-500"></i>
@@ -593,7 +580,6 @@
           </button>
         </div>
 
-        <!-- Star Notebook Panel -->
         <div id="sub-content-star" class="space-y-4">
           <div class="flex justify-between items-center bg-amber-50/60 dark:bg-amber-950/30 p-3 rounded-xl border border-amber-200/50 dark:border-amber-900/40">
             <span class="text-xs md:text-sm font-semibold text-amber-700 dark:text-amber-300 flex items-center gap-1.5">
@@ -620,7 +606,6 @@
           </div>
         </div>
 
-        <!-- Wrong Notebook Panel -->
         <div id="sub-content-wrong" class="space-y-4 hidden">
           <div class="flex justify-between items-center bg-rose-50/60 dark:bg-rose-950/30 p-3 rounded-xl border border-rose-200/50 dark:border-rose-900/40">
             <span class="text-xs md:text-sm font-semibold text-rose-700 dark:text-rose-300 flex items-center gap-1.5">
@@ -769,7 +754,7 @@
   </main>
 
   <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center py-3.5 text-xs text-slate-400 px-4 mt-auto transition-colors">
-    💡 提示：在單字列表與測驗進行中，皆可點擊星號 ⭐ 收藏單字，資料會自動同步至 LocalStorage 或雲端。
+    💡 提示：在單字列表與測驗進行中，皆可點擊星號 ⭐ 收藏單字 | <span class="font-bold text-emerald-600 dark:text-emerald-400">當前版本：v1.0.5</span>
   </footer>
 
   <!-- Firebase SDK -->
@@ -801,7 +786,6 @@
     let currentModalConfirmHandler = null;
     let isWrongPracticeMode = false;
 
-    // 分類排序與摺疊狀態紀錄
     let parentCategoryOrder = [];
     let childCategoryOrder = {};
     let expandedParentCategories = {};
@@ -1104,7 +1088,6 @@
 
         container.appendChild(parentBox);
 
-        // Render in Quiz Category Checkbox List
         const dropdownGroupWrapper = document.createElement("div");
         dropdownGroupWrapper.className = "space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-700/60 mt-1";
 
@@ -1503,7 +1486,6 @@
       if(!word || !translation) { showToast("請輸入完整的單字與翻譯！", "error"); return; }
 
       const newItem = cleanWordItem({ word, pos, translation, parentCategory, category });
-      // 只有在「英文單字」、「母類別」與「子類別」完全相同時，才進行覆蓋；類別不同則新增
       const existingIndex = wordBank.findIndex(w => 
         w.word.toLowerCase() === newItem.word.toLowerCase() &&
         (w.parentCategory || '通用分類') === newItem.parentCategory &&
@@ -1644,7 +1626,6 @@
             category: childCategoryName 
           });
 
-          // 匯入 TXT 時：只有同一母類別與子類別內相同的單字才覆蓋，不同類別則新增
           const existingIndex = wordBank.findIndex(w => 
             w.word.toLowerCase() === cleaned.word.toLowerCase() &&
             (w.parentCategory || '通用分類') === cleaned.parentCategory &&
@@ -1654,7 +1635,6 @@
             wordBank[existingIndex] = cleaned;
             updatedCount++;
           } else {
-            // 依據 TXT 檔案中的自然行順序依序 append 至單字庫末端，確保順序與 txt 完全一致
             wordBank.push(cleaned);
             addedCount++;
           }
@@ -1770,7 +1750,6 @@
     function parseFirebaseConfigInput(rawText) {
       if (!rawText || !rawText.trim()) return null;
       let text = rawText.trim();
-
       text = text.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
 
       try {
@@ -1785,9 +1764,7 @@
         if (evaluated && typeof evaluated === 'object' && (evaluated.databaseURL || evaluated.apiKey)) {
           return evaluated;
         }
-      } catch (e) {
-        console.warn("JS 物件動態解析失敗，切換至 JSON / 正則抽取模式:", e);
-      }
+      } catch (e) {}
 
       try {
         let parsed = JSON.parse(text);
@@ -1844,9 +1821,7 @@
               }
               firebase.app().delete();
             }
-          } catch (e) {
-            console.warn("中斷 Firebase 監聽時發生非致命異常:", e);
-          }
+          } catch (e) {}
           dbRef = null;
           
           localStorage.setItem("toeic_sync_disconnected", "true");
@@ -2246,7 +2221,6 @@
         category: childCat
       });
 
-      // 即時翻譯加入單字庫：同樣僅在同分類同單字時覆蓋
       const existingIndex = wordBank.findIndex(w => 
         w.word.toLowerCase() === eng.toLowerCase() &&
         (w.parentCategory || '通用分類') === newItem.parentCategory &&
@@ -2659,6 +2633,7 @@
         inputField.className = "flex-grow p-3 border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-200 rounded-xl font-bold text-xs md:text-sm";
         setTimeout(() => { proceedNext(); }, 600);
       } else {
+        isTransitioning = true;
         sessionResults.push({ word: qObj.word, translation: qObj.translation, isCorrect: false, userAnswer: input || "未填寫" });
         markAsWrong(qObj); 
         showWrongFeedback(qObj.word, qObj.translation);
@@ -3283,7 +3258,6 @@
       });
     };
 
-    // 註冊 Service Worker 實現 PWA 離線支援與快取
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
@@ -3293,4 +3267,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
