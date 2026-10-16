@@ -769,7 +769,7 @@
   </main>
 
   <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center py-3.5 text-xs text-slate-400 px-4 mt-auto transition-colors">
-    💡 提示：在單字列表與測驗進行中，皆可點擊星號 ⭐ 收藏單字| <span class="font-bold text-emerald-600 dark:text-emerald-400">當前版本：v1.0.3</span>
+    💡 提示：在單字列表與測驗進行中，皆可點擊星號 ⭐ 收藏單字 | <span class="font-bold text-emerald-600 dark:text-emerald-400">當前版本：v1.0.4</span>
   </footer>
 
   <!-- Firebase SDK -->
@@ -2088,7 +2088,7 @@
           chiTrans = text;
         }
 
-        const posMatch = chiTrans.match(/^(n\.|v\.|adj\.|adv\.|prep\.|conj\.|pron\.|phr\.|v\.\/phr\.|n\.\/phr\.)\s*/i);
+        const posMatch = chiTrans.match(/^(n\.|v\.|adj\.|adv\.|prep\.|conj\.|pron\.|phr\.|v\.\/phr\.|n\.\/phr\.|adj\.\/phr\.)\s*/i);
         if (posMatch) {
           pos = posMatch[1];
           chiTrans = chiTrans.substring(posMatch[0].length).trim();
@@ -3285,25 +3285,12 @@
 
     // 註冊 Service Worker 實現 PWA 離線支援與快取
     if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => {
-        console.log('Service Worker 註冊成功！', reg);
-
-        // 💡 關鍵新增區段：監聽是否有新版的 Service Worker 被下載
-        reg.onupdatefound = () => {
-          const installingWorker = reg.installing;
-          installingWorker.onstatechange = () => {
-            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              // 偵測到新版本已安裝，自動刷新頁面載入最新內容
-              window.location.reload();
-            }
-          };
-        };
-      })
-      .catch(err => console.log('Service Worker 註冊失敗：', err));
-  });
-}
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker 註冊成功！', reg))
+          .catch(err => console.log('Service Worker 註冊失敗：', err));
+      });
+    }
   </script>
 </body>
 </html>
