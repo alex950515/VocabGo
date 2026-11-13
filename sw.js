@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vocab-system-1151018'; // 👈 每次改了 HTML，就手動把這裡改掉（v2, v3, v4...）
+const CACHE_NAME = 'vocab-system-1151113'; // 👈 每次改了 HTML，就手動把這裡改掉（v2, v3, v4...）
 const urlsToCache = [
   './',
   './index.html',
