@@ -1,5 +1,4 @@
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="zh-TW" class="light">
 <head>
   <meta charset="UTF-8">
@@ -1504,10 +1503,7 @@
             </button>
           </td>
           <td class="py-3 px-2 font-bold text-slate-700 dark:text-slate-200">
-            ${item.word.includes('\n') 
-              ? `<pre class="cursor-pointer hover:text-emerald-600 dark:hover:text-emerald-400 font-mono text-xs whitespace-pre-wrap break-all bg-slate-100/80 dark:bg-slate-800/80 p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-700/80 transition-colors select-text" title="點擊一鍵複製" onclick="navigator.clipboard?.writeText(wordBank[${realIndex}].word); showToast('已複製程式碼！', 'success');">${item.word}</pre>`
-              : `<span class="cursor-pointer hover:text-emerald-600 dark:hover:text-emerald-400 block max-w-[220px] truncate transition-colors" title="${item.word}" onclick="speakByRealIndex(${realIndex})">${item.word}</span>`
-            }
+            <span class="cursor-pointer hover:text-emerald-600 dark:hover:text-emerald-400 block max-w-[220px] truncate transition-colors" title="${item.word}" onclick="speakByRealIndex(${realIndex})">${item.word}</span>
           </td>
           <td class="py-3 px-2 text-slate-500 dark:text-slate-400 max-w-[220px] truncate">${item.translation}</td>
           <td class="py-3 px-2 font-mono text-xs md:text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">
@@ -3296,8 +3292,6 @@
         wordBank = JSON.parse(localStorage.getItem("toeic_words")).map(cleanWordItem);
       } else {
         wordBank = [
-          {
-            wordBank = [
           { word: "information", pos: "n.", translation: "資訊", parentCategory: "多益必考", category: "DAY 1" },
           { word: "log off", pos: "v./phr.", translation: "登出", parentCategory: "多益必考", category: "DAY 1" },
           { word: "customization", pos: "n.", translation: "客製化", parentCategory: "多益必考", category: "DAY 1" }
