@@ -71,7 +71,7 @@
 
   <div id="toastContainer" class="fixed top-5 right-5 z-[9999] flex flex-col gap-2 pointer-events-none"></div>
 
-  <!-- Shared Datalists for Category Autocomplete -->
+  <!-- Shared Datalists for Category Autocomplete (保留相容性) -->
   <datalist id="parentCategoryDatalist"></datalist>
   <datalist id="childCategoryDatalist"></datalist>
 
@@ -315,16 +315,26 @@
             <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">詞性 (例: n., v./phr.)</label>
             <input id="editPosInput" type="text" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
           </div>
-          <div>
+          <div class="relative category-autocomplete-wrapper">
             <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">母類別</label>
-            <input id="editParentCategoryInput" list="parentCategoryDatalist" type="text" placeholder="例: 多益單字" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <div class="relative">
+              <input id="editParentCategoryInput" type="text" autocomplete="off" placeholder="例: 多益單字" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'parent')" oninput="openCategoryAutocomplete(this, 'parent')">
+              <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'editParentCategoryInput', 'parent')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                <i class="fa-solid fa-chevron-down text-[10px]"></i>
+              </button>
+            </div>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-2">
-          <div>
+          <div class="relative category-autocomplete-wrapper">
             <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">子類別</label>
-            <input id="editCategoryInput" list="childCategoryDatalist" type="text" placeholder="例: DAY 1" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <div class="relative">
+              <input id="editCategoryInput" type="text" autocomplete="off" placeholder="例: DAY 1" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'child', 'editParentCategoryInput')" oninput="openCategoryAutocomplete(this, 'child', 'editParentCategoryInput')">
+              <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'editCategoryInput', 'child', 'editParentCategoryInput')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                <i class="fa-solid fa-chevron-down text-[10px]"></i>
+              </button>
+            </div>
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">中文翻譯</label>
@@ -361,14 +371,24 @@
           </p>
         </div>
 
-        <div>
+        <div class="relative category-autocomplete-wrapper">
           <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">母類別名稱 (預設為檔名)</label>
-          <input id="importParentCategoryInput" list="parentCategoryDatalist" type="text" placeholder="例: 多益核心單字" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          <div class="relative">
+            <input id="importParentCategoryInput" type="text" autocomplete="off" placeholder="例: 多益核心單字" class="w-full p-2.5 pr-8 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'parent')" oninput="openCategoryAutocomplete(this, 'parent')">
+            <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'importParentCategoryInput', 'parent')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+          </div>
         </div>
 
-        <div>
+        <div class="relative category-autocomplete-wrapper">
           <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">子類別名稱</label>
-          <input id="importChildCategoryInput" list="childCategoryDatalist" type="text" placeholder="例: DAY 1 或 單元 1" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          <div class="relative">
+            <input id="importChildCategoryInput" type="text" autocomplete="off" placeholder="例: DAY 1 或 單元 1" class="w-full p-2.5 pr-8 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'child', 'importParentCategoryInput')" oninput="openCategoryAutocomplete(this, 'child', 'importParentCategoryInput')">
+            <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'importChildCategoryInput', 'child', 'importParentCategoryInput')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -510,8 +530,18 @@
           <input id="translationInput" type="text" placeholder="中文翻譯 (雇用)" class="w-full p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition" onkeypress="if(event.key==='Enter') addSingleWord()">
           
           <div class="grid grid-cols-2 gap-2">
-            <input id="parentCategoryInput" list="parentCategoryDatalist" type="text" placeholder="母類別 (例: 多益)" class="p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-            <input id="childCategoryInput" list="childCategoryDatalist" type="text" placeholder="子類別 (例: DAY 1)" class="p-2.5 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <div class="relative category-autocomplete-wrapper">
+              <input id="parentCategoryInput" type="text" autocomplete="off" placeholder="母類別 (例: 多益)" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition" onfocus="openCategoryAutocomplete(this, 'parent')" oninput="openCategoryAutocomplete(this, 'parent')">
+              <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'parentCategoryInput', 'parent')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                <i class="fa-solid fa-chevron-down text-[10px]"></i>
+              </button>
+            </div>
+            <div class="relative category-autocomplete-wrapper">
+              <input id="childCategoryInput" type="text" autocomplete="off" placeholder="子類別 (例: DAY 1)" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition" onfocus="openCategoryAutocomplete(this, 'child', 'parentCategoryInput')" oninput="openCategoryAutocomplete(this, 'child', 'parentCategoryInput')">
+              <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'childCategoryInput', 'child', 'parentCategoryInput')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                <i class="fa-solid fa-chevron-down text-[10px]"></i>
+              </button>
+            </div>
           </div>
           
           <button onclick="addSingleWord()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl text-xs md:text-sm font-bold transition shadow-sm shadow-emerald-600/20 active:scale-95">
@@ -831,8 +861,18 @@
                 <i class="fa-solid fa-folder-plus text-emerald-500"></i> 儲存至單字庫分類：
               </span>
               <div class="grid grid-cols-2 gap-2">
-                <input id="resParentCategory" list="parentCategoryDatalist" type="text" placeholder="母類別 (例: 即時字典)" class="p-2.5 text-xs md:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none">
-                <input id="resChildCategory" list="childCategoryDatalist" type="text" placeholder="子類別 (例: 查詢紀錄)" class="p-2.5 text-xs md:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none">
+                <div class="relative category-autocomplete-wrapper">
+                  <input id="resParentCategory" type="text" autocomplete="off" placeholder="母類別 (例: 即時字典)" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'parent')" oninput="openCategoryAutocomplete(this, 'parent')">
+                  <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'resParentCategory', 'parent')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                  </button>
+                </div>
+                <div class="relative category-autocomplete-wrapper">
+                  <input id="resChildCategory" type="text" autocomplete="off" placeholder="子類別 (例: 查詢紀錄)" class="w-full p-2.5 pr-7 text-xs md:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500" onfocus="openCategoryAutocomplete(this, 'child', 'resParentCategory')" oninput="openCategoryAutocomplete(this, 'child', 'resParentCategory')">
+                  <button type="button" tabindex="-1" onclick="toggleCategoryAutocomplete(event, 'resChildCategory', 'child', 'resParentCategory')" class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 px-1">
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                  </button>
+                </div>
               </div>
               <button onclick="addTranslationToWordBank()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm py-2.5 rounded-xl font-bold transition shadow-md active:scale-95">
                 <i class="fa-solid fa-plus mr-1"></i> 一鍵加入單字庫
@@ -922,6 +962,106 @@
 
       parentDatalist.innerHTML = Array.from(parentSet).map(p => `<option value="${p}">`).join('');
       childDatalist.innerHTML = Array.from(childSet).map(c => `<option value="${c}">`).join('');
+    }
+
+    // 自訂母子類別下拉選擇邏輯（確保點擊已創建的類別能即時正確填入輸入框）
+    let activeCategoryAutocompleteInputId = null;
+
+    function getAvailableCategoryOptions(type, parentInputId) {
+      if (type === 'parent') {
+        const set = new Set(parentCategoryOrder);
+        wordBank.forEach(w => {
+          if (w.parentCategory) set.add(w.parentCategory);
+        });
+        return Array.from(set).filter(Boolean);
+      } else {
+        const parentEl = parentInputId ? document.getElementById(parentInputId) : null;
+        const selectedParent = parentEl ? parentEl.value.trim() : '';
+        const set = new Set();
+
+        if (selectedParent) {
+          if (childCategoryOrder[selectedParent]) {
+            childCategoryOrder[selectedParent].forEach(c => set.add(c));
+          }
+          wordBank.forEach(w => {
+            if ((w.parentCategory || '通用分類') === selectedParent && w.category) {
+              set.add(w.category);
+            }
+          });
+        }
+
+        // 若未輸入母類別，或該母類別尚未有子類別，則顯示所有已創建的子類別
+        if (set.size === 0) {
+          Object.values(childCategoryOrder).forEach(arr => {
+            if (Array.isArray(arr)) arr.forEach(c => set.add(c));
+          });
+          wordBank.forEach(w => {
+            if (w.category) set.add(w.category);
+          });
+        }
+        return Array.from(set).filter(Boolean);
+      }
+    }
+
+    function openCategoryAutocomplete(inputEl, type, parentInputId = null) {
+      if (!inputEl) return;
+      const wrapper = inputEl.closest('.category-autocomplete-wrapper');
+      if (!wrapper) return;
+
+      closeAllCategoryAutocompletes();
+
+      const options = getAvailableCategoryOptions(type, parentInputId);
+      if (options.length === 0) return;
+
+      const dropdown = document.createElement('div');
+      dropdown.className = 'category-autocomplete-dropdown absolute left-0 right-0 top-full mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl max-h-44 overflow-y-auto z-[150] py-1';
+
+      options.forEach(opt => {
+        const itemBtn = document.createElement('button');
+        itemBtn.type = 'button';
+        itemBtn.className = 'w-full text-left px-3 py-2 text-xs md:text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition flex items-center gap-2 truncate';
+        const iconClass = type === 'parent' ? 'fa-folder text-emerald-500' : 'fa-tag text-emerald-500/80';
+        itemBtn.innerHTML = `<i class="fa-solid ${iconClass} text-[11px] flex-shrink-0"></i><span class="truncate"></span>`;
+        itemBtn.querySelector('span').textContent = opt;
+
+        const selectHandler = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          inputEl.value = opt;
+          inputEl.dispatchEvent(new Event('change', { bubbles: true }));
+          closeAllCategoryAutocompletes();
+        };
+        itemBtn.addEventListener('mousedown', selectHandler);
+        itemBtn.addEventListener('click', selectHandler);
+
+        dropdown.appendChild(itemBtn);
+      });
+
+      wrapper.appendChild(dropdown);
+      activeCategoryAutocompleteInputId = inputEl.id;
+    }
+
+    function toggleCategoryAutocomplete(event, inputId, type, parentInputId = null) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      const inputEl = document.getElementById(inputId);
+      if (!inputEl) return;
+      const wrapper = inputEl.closest('.category-autocomplete-wrapper');
+      const existingDropdown = wrapper ? wrapper.querySelector('.category-autocomplete-dropdown') : null;
+
+      if (existingDropdown) {
+        closeAllCategoryAutocompletes();
+      } else {
+        inputEl.focus();
+        openCategoryAutocomplete(inputEl, type, parentInputId);
+      }
+    }
+
+    function closeAllCategoryAutocompletes() {
+      document.querySelectorAll('.category-autocomplete-dropdown').forEach(el => el.remove());
+      activeCategoryAutocompleteInputId = null;
     }
 
     function initDarkMode() {
@@ -3346,9 +3486,16 @@
         if (dropdown && !event.target.closest("#quizCategoryDropdown") && !event.target.closest("button[onclick='toggleQuizCategoryDropdown(event)']")) {
           dropdown.classList.add("hidden");
         }
+
+        if (!event.target.closest(".category-autocomplete-wrapper")) {
+          closeAllCategoryAutocompletes();
+        }
       });
 
       document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+          closeAllCategoryAutocompletes();
+        }
         if (event.key === "Enter") {
           const customOverlay = document.getElementById("customModalOverlay");
           if (customOverlay && !customOverlay.classList.contains("hidden")) {
@@ -3372,4 +3519,4 @@
     };
   </script>
 </body>
-</html>
+  </html>
