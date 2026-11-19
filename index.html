@@ -974,10 +974,14 @@
     let activeCategoryAutocompleteInputId = null;
 
     function getAvailableCategoryOptions(type, parentInputId) {
+      syncCategoryOrders();
       if (type === 'parent') {
-        const set = new Set(parentCategoryOrder);
+        const set = new Set();
         wordBank.forEach(w => {
           if (w.parentCategory) set.add(w.parentCategory);
+        });
+        parentCategoryOrder.forEach(p => {
+          if (set.has(p)) set.add(p);
         });
         return Array.from(set).filter(Boolean);
       } else {
@@ -986,9 +990,6 @@
         const set = new Set();
 
         if (selectedParent) {
-          if (childCategoryOrder[selectedParent]) {
-            childCategoryOrder[selectedParent].forEach(c => set.add(c));
-          }
           wordBank.forEach(w => {
             if ((w.parentCategory || '通用分類') === selectedParent && w.category) {
               set.add(w.category);
@@ -996,11 +997,8 @@
           });
         }
 
-        // 若未輸入母類別，或該母類別尚未有子類別，則顯示所有已創建的子類別
+        // 若未輸入母類別，或該母類別尚未有子類別，則顯示所有已實際建立的子類別
         if (set.size === 0) {
-          Object.values(childCategoryOrder).forEach(arr => {
-            if (Array.isArray(arr)) arr.forEach(c => set.add(c));
-          });
           wordBank.forEach(w => {
             if (w.category) set.add(w.category);
           });
@@ -1740,10 +1738,11 @@
       const word = wordInput.value.trim(); 
       const pos = posInput ? posInput.value.trim() : "";
       const translation = translationInput.value.trim();
-      const parentCategory = parentCatInput ? parentCatInput.value.trim() || "手動新增" : "手動新增";
-      const category = childCatInput ? childCatInput.value.trim() || "預設組" : "預設組";
+      const parentCategory = parentCatInput ? parentCatInput.value.trim() : "";
+      const category = childCatInput ? childCatInput.value.trim() : "";
 
       if(!word || !translation) { showToast("請輸入完整的單字與翻譯！", "error"); return; }
+      if(!parentCategory || !category) { showToast("請輸入或選擇母類別與子類別！", "error"); return; }
 
       const newItem = cleanWordItem({ word, pos, translation, parentCategory, category });
       const existingIndex = wordBank.findIndex(w => 
@@ -1800,8 +1799,8 @@
       const childInput = document.getElementById("importChildCategoryInput");
 
       if (displayFileName) displayFileName.innerText = pendingTxtFileName;
-      if (parentInput) parentInput.value = defaultParentCategory || "TXT單字庫";
-      if (childInput) childInput.value = "一般單字";
+      if (parentInput) parentInput.value = defaultParentCategory || "";
+      if (childInput) childInput.value = "";
 
       const overlay = document.getElementById("txtImportCategoryModalOverlay");
       const box = document.getElementById("txtImportCategoryModalBox");
@@ -1828,8 +1827,13 @@
       const parentInput = document.getElementById("importParentCategoryInput");
       const childInput = document.getElementById("importChildCategoryInput");
 
-      const parentCategoryName = parentInput ? parentInput.value.trim() || "TXT單字庫" : "TXT單字庫";
-      const childCategoryName = childInput ? childInput.value.trim() || "一般單字" : "一般單字";
+      const parentCategoryName = parentInput ? parentInput.value.trim() : "";
+      const childCategoryName = childInput ? childInput.value.trim() : "";
+
+      if (!parentCategoryName || !childCategoryName) {
+        showToast("請輸入或選擇母類別與子類別名稱！", "error");
+        return;
+      }
 
       if (!pendingTxtRawContent) {
         showToast("沒有讀取到檔案內容！", "error");
