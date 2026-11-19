@@ -59,6 +59,87 @@
       opacity: 0 !important;
       -webkit-appearance: none !important;
     }
+
+    /* 美化全站下拉選單 (Select) UI */
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23059669' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.65rem center;
+      background-size: 0.9rem 0.9rem;
+      padding-right: 2.1rem !important;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dark select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2334d399' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    }
+    select:hover {
+      border-color: #10b981;
+    }
+
+    /* 美化全站打勾方塊 (Checkbox) UI */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 1.05rem;
+      height: 1.05rem;
+      min-width: 1.05rem;
+      min-height: 1.05rem;
+      border-radius: 0.35rem;
+      border: 1.5px solid #cbd5e1;
+      background-color: #ffffff;
+      display: inline-grid;
+      place-content: center;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      margin: 0;
+    }
+    .dark input[type="checkbox"] {
+      border-color: #475569;
+      background-color: #1e293b;
+    }
+    input[type="checkbox"]:hover {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+    input[type="checkbox"]::before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    input[type="checkbox"]:checked {
+      background-color: #059669;
+      border-color: #059669;
+      box-shadow: 0 2px 5px rgba(5, 150, 105, 0.3);
+    }
+    .dark input[type="checkbox"]:checked {
+      background-color: #10b981;
+      border-color: #10b981;
+    }
+    input[type="checkbox"]:checked::before {
+      transform: scale(1);
+    }
+    /* 錯題練習專用玫瑰紅打勾方塊 */
+    input[type="checkbox"][value="wrong_practice"]:hover {
+      border-color: #f43f5e;
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15);
+    }
+    input[type="checkbox"][value="wrong_practice"]:checked {
+      background-color: #e11d48;
+      border-color: #e11d48;
+      box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
+    }
     
     @keyframes toastIn {
       from { transform: translateY(-20px); opacity: 0; }
@@ -622,54 +703,63 @@
       </div>
 
       <!-- Tab 2: Quiz View -->
-      <div id="tab-content-quiz" class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-5 hidden transition-colors">
+      <div id="tab-content-quiz" class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-4 hidden transition-colors">
         
-        <div class="bg-gradient-to-br from-slate-50 to-emerald-50/40 dark:from-slate-800/60 dark:to-emerald-950/20 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 space-y-3.5 shadow-sm">
-          <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-700/60 pb-2.5">
-            <span class="text-xs md:text-sm font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <div class="bg-gradient-to-br from-slate-50 to-emerald-50/40 dark:from-slate-800/60 dark:to-emerald-950/20 p-3 rounded-xl border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-sm">
+          <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-700/60 pb-1.5">
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
               <i class="fa-solid fa-sliders text-emerald-600 dark:text-emerald-400"></i>
               <span>測驗條件設定</span>
             </span>
-            <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-100/60 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/60">
+            <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-100/60 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/60">
               <i class="fa-solid fa-layer-group mr-1"></i> 多元模式
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
             <div class="relative">
-              <label class="block text-xs md:text-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-                <i class="fa-solid fa-folder-tree text-emerald-500"></i> 選擇測驗單元 (可複選)
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-folder-tree text-emerald-500"></i> 測驗單元 (複選)
               </label>
-              <button type="button" onclick="toggleQuizCategoryDropdown(event)" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 text-xs md:text-sm text-left flex justify-between items-center shadow-sm hover:border-emerald-500 dark:hover:border-emerald-500 transition">
-                <span id="quizCategoryDropdownBtnText" class="truncate text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold">全部單字</span>
-                <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+              <button type="button" onclick="toggleQuizCategoryDropdown(event)" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl py-1.5 px-2.5 text-xs text-left flex justify-between items-center shadow-sm hover:border-emerald-500 dark:hover:border-emerald-500 transition">
+                <span id="quizCategoryDropdownBtnText" class="truncate text-emerald-600 dark:text-emerald-400 text-xs font-bold">全部單字</span>
+                <i class="fa-solid fa-chevron-down text-emerald-600 dark:text-emerald-400 text-[10px]"></i>
               </button>
-              <div id="quizCategoryDropdown" class="hidden absolute left-0 right-0 z-20 mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl max-h-48 overflow-y-auto p-2.5 space-y-1 backdrop-blur-md"></div>
+              <div id="quizCategoryDropdown" class="hidden absolute left-0 right-0 sm:w-64 z-20 mt-1.5 bg-white/95 dark:bg-slate-800/95 border border-slate-200/90 dark:border-slate-700 rounded-2xl shadow-2xl max-h-52 overflow-y-auto p-2 space-y-1 backdrop-blur-md"></div>
             </div>
 
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <label class="block text-xs md:text-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-                  <i class="fa-solid fa-gamepad text-emerald-500"></i> 測驗模式
-                </label>
-                <select id="quizMode" class="w-full p-2.5 text-xs md:text-sm font-bold border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none" onchange="handleQuizModeChange()">
-                  <option value="engToChi">英翻中 (四選一)</option>
-                  <option value="audioToEng">聽音選單字</option>
-                  <option value="chiToEng">中翻英 (拼寫)</option>
-                  <option value="spellWithAudio">聽音默寫</option>
-                </select>
-              </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-gamepad text-emerald-500"></i> 測驗模式
+              </label>
+              <select id="quizMode" class="w-full py-1.5 px-2.5 text-xs font-bold border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none" onchange="handleQuizModeChange()">
+                <option value="engToChi">英翻中 (選擇題)</option>
+                <option value="chiToEngChoice">中翻英 (選擇題)</option>
+                <option value="audioToEng">聽音選單字</option>
+                <option value="chiToEng">中翻英 (拼寫)</option>
+                <option value="spellWithAudio">聽音默寫</option>
+              </select>
+            </div>
 
-              <div>
-                <label class="block text-xs md:text-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-                  <i class="fa-solid fa-list-ol text-emerald-500"></i> 題數設定
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-shuffle text-emerald-500"></i> 出題順序
+              </label>
+              <select id="quizOrder" class="w-full py-1.5 px-2.5 text-xs font-bold border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none">
+                <option value="random">隨機出題</option>
+                <option value="sequential">按順序出題</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-list-ol text-emerald-500"></i> 題數設定
+              </label>
+              <div class="flex gap-1.5 items-center">
+                <input id="quizLimit" type="number" value="10" min="1" class="w-14 py-1.5 px-1 text-xs font-bold text-center border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none">
+                <label class="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold cursor-pointer text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 px-2 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-emerald-400 transition whitespace-nowrap select-none">
+                  <input id="quizAllCheckbox" type="checkbox" onchange="toggleQuizAll(this)"><span>全部</span>
                 </label>
-                <div class="flex gap-1.5 items-center">
-                  <input id="quizLimit" type="number" value="10" min="1" class="w-16 p-2 text-xs md:text-sm font-bold text-center border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                  <label class="flex items-center gap-1 text-xs font-bold cursor-pointer text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-emerald-400 transition">
-                    <input id="quizAllCheckbox" type="checkbox" onchange="toggleQuizAll(this)" class="rounded text-emerald-600 focus:ring-emerald-500 dark:bg-slate-800">全部
-                  </label>
-                </div>
               </div>
             </div>
           </div>
@@ -1247,10 +1337,10 @@
       const wrongCount = Object.keys(wrongWords).length;
       const isWrongChecked = !isAllChecked && selectedQuizCategories.includes("wrong_practice");
       const wrongDiv = document.createElement("label");
-      wrongDiv.className = "flex items-center justify-between text-xs md:text-sm font-bold text-rose-700 dark:text-rose-300 cursor-pointer p-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 transition border border-rose-100 dark:border-rose-900/50 mb-1";
+      wrongDiv.className = "flex items-center justify-between text-xs md:text-sm font-bold text-rose-700 dark:text-rose-300 cursor-pointer p-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 transition border border-rose-100 dark:border-rose-900/50 mb-1 select-none";
       wrongDiv.innerHTML = `
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="quizCatCheckbox" value="wrong_practice" ${isWrongChecked ? 'checked' : ''} onchange="handleQuizCategoryItemToggle()" class="w-4 h-4 rounded text-rose-600 focus:ring-rose-500 dark:bg-slate-800 border-slate-300 dark:border-slate-600 flex-shrink-0">
+        <div class="flex items-center gap-2.5">
+          <input type="checkbox" name="quizCatCheckbox" value="wrong_practice" ${isWrongChecked ? 'checked' : ''} onchange="handleQuizCategoryItemToggle()" class="flex-shrink-0">
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-exclamation text-rose-500"></i> 錯題練習 (不計入紀錄)</span>
         </div>
         <span class="text-xs bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2 py-0.5 rounded-full font-mono flex-shrink-0">${wrongCount} 字</span>
@@ -1258,10 +1348,10 @@
       quizCheckboxList.appendChild(wrongDiv);
 
       const allDiv = document.createElement("label");
-      allDiv.className = "flex items-center justify-between text-xs md:text-sm font-bold text-slate-800 dark:text-slate-100 cursor-pointer p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-slate-700/60 transition border border-emerald-100 dark:border-slate-700/50 mb-1";
+      allDiv.className = "flex items-center justify-between text-xs md:text-sm font-bold text-slate-800 dark:text-slate-100 cursor-pointer p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-slate-700/60 transition border border-emerald-100 dark:border-slate-700/50 mb-1 select-none";
       allDiv.innerHTML = `
-        <div class="flex items-center gap-2">
-          <input type="checkbox" id="check-cat-all" value="all" ${isAllChecked ? 'checked' : ''} onchange="handleQuizAllCategoryToggle(this)" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 dark:bg-slate-800 border-slate-300 dark:border-slate-600">
+        <div class="flex items-center gap-2.5">
+          <input type="checkbox" id="check-cat-all" value="all" ${isAllChecked ? 'checked' : ''} onchange="handleQuizAllCategoryToggle(this)" class="flex-shrink-0">
           <span>全部單字 (選取全部)</span>
         </div>
         <span class="text-xs bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-mono">${wordBank.length} 字</span>
@@ -1360,10 +1450,10 @@
           const isItemChecked = !isAllChecked && selectedQuizCategories.includes(fullKey);
 
           const catDiv = document.createElement("label");
-          catDiv.className = "flex items-center justify-between text-xs md:text-sm text-slate-700 dark:text-slate-200 cursor-pointer p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 transition ml-1.5 border border-transparent hover:border-slate-200 dark:hover:border-slate-700";
+          catDiv.className = "flex items-center justify-between text-xs md:text-sm text-slate-700 dark:text-slate-200 cursor-pointer p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 transition ml-1.5 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 select-none";
           catDiv.innerHTML = `
-            <div class="flex items-center gap-2 truncate pr-2">
-              <input type="checkbox" name="quizCatCheckbox" value="${fullKey}" ${isItemChecked ? 'checked' : ''} onchange="handleQuizCategoryItemToggle()" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 dark:bg-slate-800 border-slate-300 dark:border-slate-600 flex-shrink-0">
+            <div class="flex items-center gap-2.5 truncate pr-2">
+              <input type="checkbox" name="quizCatCheckbox" value="${fullKey}" ${isItemChecked ? 'checked' : ''} onchange="handleQuizCategoryItemToggle()" class="flex-shrink-0">
               <span class="truncate">${childCat}</span>
             </div>
             <span class="text-xs bg-slate-100 dark:bg-slate-700/80 text-slate-500 dark:text-slate-300 px-2 py-0.5 rounded-full font-mono flex-shrink-0">${count} 字</span>
@@ -2772,17 +2862,20 @@
         return;
       }
 
-      let shuffled = [...filtered].sort(() => Math.random() - 0.5);
+      const orderEl = document.getElementById("quizOrder");
+      const quizOrder = orderEl ? orderEl.value : "random";
+      let orderedList = quizOrder === "random" ? [...filtered].sort(() => Math.random() - 0.5) : [...filtered];
+
       const isAll = document.getElementById("quizAllCheckbox").checked;
       const requestedLimit = parseInt(document.getElementById("quizLimit").value) || 10;
       
-      let limit = isAll ? shuffled.length : Math.min(requestedLimit, shuffled.length);
+      let limit = isAll ? orderedList.length : Math.min(requestedLimit, orderedList.length);
 
-      if (!isAll && requestedLimit > shuffled.length) {
-        showToast(`所選分類可用單字共 ${shuffled.length} 個，已自動調整測驗為 ${shuffled.length} 題`, 'info');
+      if (!isAll && requestedLimit > orderedList.length) {
+        showToast(`所選分類可用單字共 ${orderedList.length} 個，已自動調整測驗為 ${orderedList.length} 題`, 'info');
       }
 
-      currentQuizList = shuffled.slice(0, limit);
+      currentQuizList = orderedList.slice(0, limit);
       currentQuizIndex = 0;
       sessionResults = [];
       updateQuizActionButton();
@@ -2814,7 +2907,7 @@
         </div>
       `;
 
-      if (mode === "engToChi" || mode === "audioToEng") {
+      if (mode === "engToChi" || mode === "chiToEngChoice" || mode === "audioToEng") {
         currentCorrectAnswer = mode === "engToChi" ? qObj.translation : qObj.word;
         let pool = mode === "engToChi" ? wordBank.map(w=>w.translation) : wordBank.map(w=>w.word);
         let distractors = [...new Set(pool.filter(p => p !== currentCorrectAnswer))].sort(()=>Math.random()-0.5).slice(0,3);
@@ -2834,6 +2927,18 @@
             <div class="space-y-4 w-full pt-2">
               <div class="flex justify-center items-center gap-2.5">
                 <span class="text-2xl md:text-3xl font-black text-slate-800 dark:text-slate-100 tracking-wide">${qObj.word}</span>
+                <button onclick="speak(decodeURIComponent('${safeJsParam(qObj.word)}'))" class="w-9 h-9 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-slate-700 flex items-center justify-center transition shadow-sm" title="聽發音"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-lg mx-auto text-left pt-2">${optionsHTML}</div>
+            </div>
+          `;
+        } else if (mode === "chiToEngChoice") {
+          card.innerHTML = `
+            ${progressBarHTML}
+            ${starButtonHTML}
+            <div class="space-y-4 w-full pt-2">
+              <div class="flex justify-center items-center gap-2.5">
+                <span class="text-2xl md:text-3xl font-black text-slate-800 dark:text-slate-100 tracking-wide">${qObj.translation}</span>
                 <button onclick="speak(decodeURIComponent('${safeJsParam(qObj.word)}'))" class="w-9 h-9 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-slate-700 flex items-center justify-center transition shadow-sm" title="聽發音"><i class="fa-solid fa-volume-high text-xs"></i></button>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-lg mx-auto text-left pt-2">${optionsHTML}</div>
@@ -2993,7 +3098,8 @@
       if (!card) return;
 
       const modeBadges = {
-        'engToChi': '英翻中 (四選一)',
+        'engToChi': '英翻中 (選擇題)',
+        'chiToEngChoice': '中翻英 (選擇題)',
         'audioToEng': '聽音選單字',
         'chiToEng': '中翻英 (拼寫)',
         'spellWithAudio': '聽音默寫'
@@ -3082,9 +3188,10 @@
       if (!record) return;
 
       const modeBadges = {
-        'engToChi': '英翻中',
+        'engToChi': '英翻中 (選擇題)',
+        'chiToEngChoice': '中翻英 (選擇題)',
         'audioToEng': '聽音選單字',
-        'chiToEng': '中翻英',
+        'chiToEng': '中翻英 (拼寫)',
         'spellWithAudio': '聽音默寫'
       };
 
@@ -3193,9 +3300,10 @@
       }
       
       const modeBadges = {
-        'engToChi': { name: '英翻中', color: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60' },
+        'engToChi': { name: '英翻中 (選擇題)', color: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60' },
+        'chiToEngChoice': { name: '中翻英 (選擇題)', color: 'bg-cyan-100 dark:bg-cyan-950/80 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800/60' },
         'audioToEng': { name: '聽音選單字', color: 'bg-teal-100 dark:bg-teal-950/80 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800/60' },
-        'chiToEng': { name: '中翻英', color: 'bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/60' },
+        'chiToEng': { name: '中翻英 (拼寫)', color: 'bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/60' },
         'spellWithAudio': { name: '聽音默寫', color: 'bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60' }
       };
 
